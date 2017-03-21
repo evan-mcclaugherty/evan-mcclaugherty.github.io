@@ -1,11 +1,3 @@
-$(function () {
-    bio.display();
-    work.display();
-    projects.display();
-    education.display();
-    contacts.display();
-});
-
 var bio = {
     name: "Evan McClaugherty",
     role: "Web Developer",
@@ -35,13 +27,13 @@ var bio = {
         $('#header').prepend("<div class='name-container'></div>");
         $('.name-container').prepend(HTMLheaderName.replace('%data%', bio.name));
         $('#name').after(HTMLheaderRole.replace('%data%', bio.role));
-        $('#topContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
-        $('#topContacts').append(HTMLemail.replace('%data%', bio.contacts.email));
+        $('#topContacts, #footerContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
+        $('#topContacts, #footerContacts').append(HTMLemail.replace('%data%', bio.contacts.email));
         var linkedinUrl = "<a target='_blank' href=" + bio.contacts.linkedin + ">evan-mcclaugherty</a>";
-        $('#topContacts').append(HTMLlinkedin.replace('%data%', linkedinUrl));
+        $('#topContacts, #footerContacts').append(HTMLlinkedin.replace('%data%', linkedinUrl));
         var githubUrl = "<a target='_blank' href=" + bio.contacts.github + ">evan-mcclaugherty</a>";
-        $('#topContacts').append(HTMLgithub.replace('%data%', githubUrl));
-        $('#topContacts').append(HTMLlocation.replace('%data%', bio.contacts.cityState));
+        $('#topContacts, #footerContacts').append(HTMLgithub.replace('%data%', githubUrl));
+        $('#topContacts, #footerContacts').append(HTMLlocation.replace('%data%', bio.contacts.cityState));
 
         $('.contacts-container').prepend(HTMLbioPic.replace('%data%', bio.biopic));
         $('#header').append('<hr>');
@@ -50,8 +42,6 @@ var bio = {
         bio.skills.forEach(function (skill) {
             $('#skills').append(HTMLskills.replace('%data%', skill));
         });
-        $('#header').show();
-        $('#topContacts').show();
     }
 };
 var work = {
@@ -92,7 +82,6 @@ var work = {
             $('.work-entry:last').append(HTMLworkLocation.replace('%data%', job.cityState));
             $('.work-entry:last').append(HTMLworkDescription.replace('%data%', job.description));
         });
-        $('#workExperience').show();
     }
 };
 
@@ -116,9 +105,10 @@ var projects = {
             });
             $('.project-entry:last').append(HTMLprojectDates.replace('%data%', project.dates));
             $('.project-entry:last').append(HTMLprojectDescription.replace('%data%', project.description));
-            $('.project-entry:last').append(HTMLprojectImage.replace('%data%', project.images[0]));
+            project.images.forEach(function(image) {
+                $('.project-entry:last').append(HTMLprojectImage.replace('%data%', image));
+            });
         });
-        $('#projects').show();
     }
 };
 
@@ -127,7 +117,7 @@ var education = {
         name: "Galvanize",
         cityState: "Denver, CO",
         location: "1644 Platte St, Denver, CO 80202",
-        majors: [],
+        majors: ["N/A"],
         degree: "Web Development Immersive",
         dates: "April, 2016 - October, 2016",
         url: "https://new.galvanize.com/denver/web-development?_ga=1.64255343.1134856722.1489871596#curriculum"
@@ -142,12 +132,7 @@ var education = {
         dates: "2009-2012",
         url: "http://www.nu.edu/OurPrograms/SchoolOfBusinessAndManagement/AccountingAndFinance/Programs/BSAccountancy.html"
     }],
-    onlineCourses: [{
-        title: 'fake title',
-        school: 'fake school',
-        dates: 'shit - shat',
-        url: 'www.gofuckyourselfcom'
-    }],
+    onlineCourses: ["N/A"],
     display: function () {
         education.schools.forEach(function (school) {
             $('#education').append(HTMLschoolStart);
@@ -158,13 +143,13 @@ var education = {
             });
             $('.education-entry:last').append(HTMLschoolDates.replace('%data%', school.dates));
             $('.education-entry:last').append(HTMLschoolLocation.replace('%data%', school.cityState));
-            if (school.majors.length > 0) {
+            if (school.majors[0] !== "N/A") {
                 $('.education-entry:last').append(HTMLschoolMajor.replace('%data%', school.majors[0]));
             } else {
                 $('.education-entry:last').append('<em><br></em>');
             }
         });
-        if (education.onlineCourses.length > 0) {
+        if (education.onlineCourses[0] !== "N/A") {
             $('#education').append(HTMLonlineClasses);
             education.onlineCourses.forEach(function (course) {
                 $(".online-classes:last").append(HTMLonlineTitle.replace('%data%', course.title) + HTMLonlineSchool.replace('%data', course.school));
@@ -175,19 +160,10 @@ var education = {
                 $(".online-classes:last").append(HTMLonlineDates.replace('%data%', course.dates));
             });
         }
-        $('#education').show();
     }
 };
 
-var contacts = {
-    display: function () {
-        var githubUrl = "<a target='_blank' href=" + bio.contacts.github + ">evan-mcclaugherty</a>";
-        var linkedinUrl = "<a target='_blank' href=" + bio.contacts.linkedin + ">evan-mcclaugherty</a>";
-        $('#footerContacts').append(HTMLmobileFooter.replace('%data%', bio.contacts.mobile));
-        $('#footerContacts').append(HTMLemailFooter.replace('%data%', bio.contacts.email));
-        $('#footerContacts').append(HTMLlinkedinFooter.replace('%data%', linkedinUrl));
-        $('#footerContacts').append(HTMLgithubFooter.replace('%data%', githubUrl));
-        $('#footerContacts').append(HTMLlocationFooter.replace('%data%', bio.contacts.cityState));
-        $('#lets-connect').show();
-    }
-};
+bio.display();
+work.display();
+projects.display();
+education.display();
