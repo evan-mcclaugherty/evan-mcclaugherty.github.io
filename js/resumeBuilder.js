@@ -3,10 +3,9 @@ $(function () {
     work.display();
     projects.display();
     education.display();
-    $('#mapDiv').append(googleMap);
-    $('#mapDiv').show();
     contacts.display();
-})
+});
+
 var bio = {
     name: "Evan McClaugherty",
     role: "Web Developer",
@@ -33,7 +32,7 @@ var bio = {
     ],
     biopic: "images/EvanProfilePic.jpg",
     display: function () {
-        $('#header').prepend("<div class='name-container'></div>")
+        $('#header').prepend("<div class='name-container'></div>");
         $('.name-container').prepend(HTMLheaderName.replace('%data%', bio.name));
         $('#name').after(HTMLheaderRole.replace('%data%', bio.role));
         $('#topContacts').append(HTMLmobile.replace('%data%', bio.contacts.mobile));
@@ -54,7 +53,7 @@ var bio = {
         $('#header').show();
         $('#topContacts').show();
     }
-}
+};
 var work = {
     jobs: [{
         employer: "Digital Fusion",
@@ -95,7 +94,7 @@ var work = {
         });
         $('#workExperience').show();
     }
-}
+};
 
 var projects = {
     projects: [{
@@ -121,13 +120,14 @@ var projects = {
         });
         $('#projects').show();
     }
-}
+};
 
 var education = {
     schools: [{
         name: "Galvanize",
         cityState: "Denver, CO",
         location: "1644 Platte St, Denver, CO 80202",
+        majors: [],
         degree: "Web Development Immersive",
         dates: "April, 2016 - October, 2016",
         url: "https://new.galvanize.com/denver/web-development?_ga=1.64255343.1134856722.1489871596#curriculum"
@@ -142,6 +142,12 @@ var education = {
         dates: "2009-2012",
         url: "http://www.nu.edu/OurPrograms/SchoolOfBusinessAndManagement/AccountingAndFinance/Programs/BSAccountancy.html"
     }],
+    onlineCourses: [{
+        title: 'fake title',
+        school: 'fake school',
+        dates: 'shit - shat',
+        url: 'www.gofuckyourselfcom'
+    }],
     display: function () {
         education.schools.forEach(function (school) {
             $('#education').append(HTMLschoolStart);
@@ -152,15 +158,26 @@ var education = {
             });
             $('.education-entry:last').append(HTMLschoolDates.replace('%data%', school.dates));
             $('.education-entry:last').append(HTMLschoolLocation.replace('%data%', school.cityState));
-            if (school.majors !== undefined) {
+            if (school.majors.length > 0) {
                 $('.education-entry:last').append(HTMLschoolMajor.replace('%data%', school.majors[0]));
             } else {
                 $('.education-entry:last').append('<em><br></em>');
             }
         });
+        if (education.onlineCourses.length > 0) {
+            $('#education').append(HTMLonlineClasses);
+            education.onlineCourses.forEach(function (course) {
+                $(".online-classes:last").append(HTMLonlineTitle.replace('%data%', course.title) + HTMLonlineSchool.replace('%data', course.school));
+                $(".online-classes:last a").attr({
+                    href: course.url,
+                    target: "_blank"
+                });
+                $(".online-classes:last").append(HTMLonlineDates.replace('%data%', course.dates));
+            });
+        }
         $('#education').show();
     }
-}
+};
 
 var contacts = {
     display: function () {
@@ -173,4 +190,4 @@ var contacts = {
         $('#footerContacts').append(HTMLlocationFooter.replace('%data%', bio.contacts.cityState));
         $('#lets-connect').show();
     }
-}
+};
