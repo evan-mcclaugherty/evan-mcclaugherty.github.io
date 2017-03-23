@@ -2,7 +2,7 @@ var bio = {
     name: "Evan McClaugherty",
     role: "Web Developer",
     contacts: {
-        mobile: "707-816-2861",
+        mobile: "720-504-7239",
         email: "evan.mcclaugherty@gmail.com",
         linkedin: "https://www.linkedin.com/in/evan-mcclaugherty",
         github: "https://github.com/evan-mcclaugherty",
