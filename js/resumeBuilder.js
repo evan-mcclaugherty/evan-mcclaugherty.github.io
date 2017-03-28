@@ -51,7 +51,7 @@ var work = {
         cityState: "Lakewood, CO",
         location: "141 Union Blvd #460, Lakewood, CO 80228",
         dates: "October, 2016 - current",
-        description: "Responsibilities revolve around the Saleforce Marketing Cloud platform:  Creating, editing, and maintaining landing pages, cloud pages, and microsites.",
+        description: "Develop and maintain Salesforce landing and cloud pages.  Design and execute integration and development activities for the Salesforce Marketing Cloud including marketing automation, T-SQL, AMPscript, SOAP and REST web services.",
         jobUrl: "http://digitalfusion.com/"
     }, {
         employer: "Union Pacific Railroad",
