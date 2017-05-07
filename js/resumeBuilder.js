@@ -102,7 +102,8 @@ var projects = {
         description: "Todo MVC featuring Vue.js, Service Workers, SASS, Materialize",
         url: "https://todos-6ed33.firebaseapp.com/",
         images: [
-            "images/todo.png"
+            "images/todo.png",
+            "images/desktop.png"
         ]
     }],
     display: function () {
