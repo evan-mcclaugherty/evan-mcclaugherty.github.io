@@ -15,6 +15,8 @@ var bio = {
         "CSS3",
         "JavaScript",
         "Angular 2",
+        "React",
+        "Vue.js"
         "jQuery",
         "SQL",
         "Node.js",
@@ -93,6 +95,14 @@ var projects = {
         url: "https://happytracker.herokuapp.com/",
         images: [
             "images/HappyTracker_ik5q42_c_scale,w_944.png"
+        ]
+    }, {
+        title: "Todo",
+        dates: "May, 2017",
+        description: "Todo MVC featuring Vue.js, Service Workers, SASS, Materialize",
+        url: "https://todos-6ed33.firebaseapp.com/",
+        images: [
+            "images/todo.png"
         ]
     }],
     display: function () {
