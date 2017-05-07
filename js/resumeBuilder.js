@@ -16,7 +16,7 @@ var bio = {
         "JavaScript",
         "Angular 2",
         "React",
-        "Vue.js"
+        "Vue.js",
         "jQuery",
         "SQL",
         "Node.js",
